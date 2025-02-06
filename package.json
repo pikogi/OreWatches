@@ -1,0 +1,17 @@
+{
+  "name": "gianni-puente",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pikogi/Puente3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/pikogi/Puente3#readme",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
