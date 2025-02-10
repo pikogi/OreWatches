@@ -1501,7 +1501,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left:4px;
   outline: 0;
   border: none;
-  width: 250px;
+  width: 200px;
   height: auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -1856,12 +1856,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left: 6px;
   text-shadow:0 2px 3px rgba(0,0,0,0.5);
 }
-@media (max-width: 768px) {
-  /* Ajustar margen superior para que el header no quede oculto */
-  .home-content .h3 {
-      font-size: 10px; /* Puedes reducir el margen si es necesario */
-  }
-}
 
 .home-content h1 {
   font-family: "config-bold", sans-serif;
@@ -1869,13 +1863,20 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-top: 0;
   color: #FFFFFF;
 }
+/* Ajustes para h1 y h3 en pantallas móviles */
 @media (max-width: 768px) {
-  /* Ajustar margen superior para que el header no quede oculto */
+  /* Reducir tamaño de h1 en pantallas pequeñas */
   .home-content h1 {
-      font-size: 10px; /* Puedes reducir el margen si es necesario */
+      font-size: 2.5rem !important; /* Puedes ajustar este valor como lo desees */
+      margin-bottom: 3.5rem;
+      white-space: normal;
+    }
+
+  /* Reducir tamaño de h3 en pantallas pequeñas */
+  .home-content h3 {
+      font-size: 14px !important; /* Ajusta este tamaño según lo que necesites */
   }
 }
-
 .home-content__main {
   width:84%;
   padding-top: 150px;
