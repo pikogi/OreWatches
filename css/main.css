@@ -1401,7 +1401,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     background-color: #248802;  /* Color llamativo */
     color: white;
     text-align: center;
-    padding: 3px 10px;
+    padding: 10px 20px;
     font-size: 20px;
     height: 45px;
     font-weight: bold;
@@ -1415,6 +1415,12 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     width: 100%;
     z-index: 1000; /* Asegura que esté por encima del header */
 }
+    .top-bar p {
+      margin: 0; /* Eliminar márgenes que pueden desalinearlo */
+      display: flex;
+      align-items: center;
+  }
+
 
 /* Ajusta el header para que no quede oculto */
 .s-header {
@@ -1423,17 +1429,41 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 /* Botón CTA */
 .cta-button {
-    background-color: white;
-    color: #ff5722;
-    padding: 1px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s;
+  background-color: white;
+  color: #ff5722;
+  padding: 5px 15px; /* Ajusta el espacio interno */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto */
+  justify-content: center; /* Centra horizontalmente el texto */
+  height: 30px; /* Ajusta la altura del botón */
+  line-height: 1; /* Evita que el texto se desplace */
 }
 
 .cta-button:hover {
     background-color: #ffccbc;
+}
+/* -------------------------------------------------------------------
+* ## Whatsapp flotante
+* ------------------------------------------------------------------- */
+/* Estilo para el botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px; /* Distancia desde el borde inferior de la pantalla */
+  right: 20px;  /* Distancia desde el borde derecho de la pantalla */
+  z-index: 9999; /* Asegura que esté encima de otros elementos */
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-icon {
+  width: 60px;  /* Ajusta el tamaño del icono */
+  height: 60px;
 }
 
 /* -------------------------------------------------------------------
