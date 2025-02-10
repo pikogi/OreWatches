@@ -1393,7 +1393,48 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   top: 0;
   z-index: 500;
 }
+/* -------------------------------------------------------------------
+* ## sidebar superor
+* ------------------------------------------------------------------- */
+/* Estilos para la barra superior */
+.top-bar {
+    background-color: #248802;  /* Color llamativo */
+    color: white;
+    text-align: center;
+    padding: 3px 10px;
+    font-size: 20px;
+    height: 45px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima del header */
+}
 
+/* Ajusta el header para que no quede oculto */
+.s-header {
+    margin-top: 50px; /* Ajustar según el alto de la barra */
+}
+
+/* Botón CTA */
+.cta-button {
+    background-color: white;
+    color: #ff5722;
+    padding: 1px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #ffccbc;
+}
 
 /* -------------------------------------------------------------------
 * ## header logo
@@ -1417,7 +1458,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left:4px;
   outline: 0;
   border: none;
-  width: 180px;
+  width: 300px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -2179,7 +2220,7 @@ html.no-csstransitions .home-content__main {
 .s-about {
   padding-top: 14.2rem;
   padding-bottom: 9rem;
-  background-color: #DCDFDF;
+  background-color: #C0B7B1;
   color: #fff;
   position: relative;
 }
@@ -2349,7 +2390,7 @@ html.no-csstransitions .home-content__main {
 * ------------------------------------------------------------------- */
 .s-services {
   padding:13rem 2%;
-  background-color: #091e57;
+  background-color: #433E3F;
   background-image: url("images/agua4.jpg");
   background-size:100%;
   color: #2D2E34;
@@ -2504,7 +2545,7 @@ html.no-csstransitions .home-content__main {
 *
 * ------------------------------------------------------------------- */
 .s-works {
-  background: #DCDFDF;
+  background: #C0B7B1;
   padding:2rem 2% 14rem 2%;
   min-height: 800px;
   position: relative;
@@ -2936,7 +2977,7 @@ html.no-csstransitions .home-content__main {
 *
 * ------------------------------------------------------------------- */
 .s-contact {
-  background-color: #151515;
+  background-color: #433E3F;
   background-image: url("images/agua4.jpg");
   background-repeat: no-repeat;
   background-position: center, center;
