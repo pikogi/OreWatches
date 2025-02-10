@@ -1424,7 +1424,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     /* Ajustar margen superior para que el header no quede oculto */
     .top-bar {
         margin-top: 0px;
-        font-size: 10px;
+        font-size: 12px;
         height: 35px; /* Puedes reducir el margen si es necesario */
     }
   }
@@ -1508,7 +1508,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 @media (max-width: 768px) {
   .header-logo img {
-      width: 120px; /* Reduce el tamaño del logo en pantallas más pequeñas */
+      width: 140px; /* Reduce el tamaño del logo en pantallas más pequeñas */
   }
 }
 .p-back-header {
@@ -1847,7 +1847,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .home-content h3 {
   font-family: "config-medium", sans-serif;
   font-size: 20px;
-  color: rgba(255, 255, 255, 1);
+  color: rgb(235, 11, 11);
   text-transform: uppercase;
   letter-spacing: .3rem;
   position: relative;
