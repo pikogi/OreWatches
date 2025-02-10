@@ -1867,7 +1867,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 @media (max-width: 768px) {
   /* Reducir tamaño de h1 en pantallas pequeñas */
   .home-content h1 {
-      font-size: 3rem !important; /* Puedes ajustar este valor como lo desees */
+      font-size: 4rem !important; /* Puedes ajustar este valor como lo desees */
       margin-bottom: 3.5rem;
       white-space: normal;
     }
