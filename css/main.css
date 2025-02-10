@@ -1425,7 +1425,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     .top-bar {
         margin-top: 0px;
         font-size: 12px;
-        height: 35px; /* Puedes reducir el margen si es necesario */
+        height: 40px; /* Puedes reducir el margen si es necesario */
     }
   }
 
@@ -1487,7 +1487,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   position: absolute;
   margin: 0;
   padding: 0;
-  top: 50%;
+  top: 60%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
