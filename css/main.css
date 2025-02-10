@@ -1420,11 +1420,24 @@ button::-moz-focus-inner, input::-moz-focus-inner {
       display: flex;
       align-items: center;
   }
-
+  @media (max-width: 500px) {
+    /* Ajustar margen superior para que el header no quede oculto */
+    .top-bar {
+        margin-top: 0px;
+        font-size: 10px;
+        height: 35px; /* Puedes reducir el margen si es necesario */
+    }
+  }
 
 /* Ajusta el header para que no quede oculto */
 .s-header {
     margin-top: 50px; /* Ajustar según el alto de la barra */
+}
+@media (max-width: 768px) {
+  /* Ajustar margen superior para que el header no quede oculto */
+  .s-header {
+      margin-top: 60px; /* Puedes reducir el margen si es necesario */
+  }
 }
 
 /* Botón CTA */
@@ -1488,11 +1501,16 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left:4px;
   outline: 0;
   border: none;
-  width: 300px;
+  width: 250px;
+  height: auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
+@media (max-width: 768px) {
+  .header-logo img {
+      width: 120px; /* Reduce el tamaño del logo en pantallas más pequeñas */
+  }
+}
 .p-back-header {
   position: absolute;;
   width:100%;
@@ -1838,12 +1856,24 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left: 6px;
   text-shadow:0 2px 3px rgba(0,0,0,0.5);
 }
+@media (max-width: 768px) {
+  /* Ajustar margen superior para que el header no quede oculto */
+  .home-content .h3 {
+      font-size: 10px; /* Puedes reducir el margen si es necesario */
+  }
+}
 
 .home-content h1 {
   font-family: "config-bold", sans-serif;
   font-size: 6.3rem;
   margin-top: 0;
   color: #FFFFFF;
+}
+@media (max-width: 768px) {
+  /* Ajustar margen superior para que el header no quede oculto */
+  .home-content h1 {
+      font-size: 10px; /* Puedes reducir el margen si es necesario */
+  }
 }
 
 .home-content__main {
