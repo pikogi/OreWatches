@@ -1957,20 +1957,14 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   right: 7.2rem;
   bottom: 0;
 }
-
 @media only screen and (max-width: 768px) {
   #home {
-    background-color: #000000;
-    background-repeat: no-repeat !important;
-    background-size: contain !important; /* Ajusta la imagen al contenedor */
-    background-position: center !important; /* Centra la imagen */
-    height: auto !important; /* Ajusta la altura según el contenido */
-    min-height: 500px !important; /* Define una altura mínima para evitar que se vea muy pequeña */
+      background-image: url('images/fondo2.jpg');
+      background-size: cover !important;
+      background-position: center bottom !important;
+      background-repeat: no-repeat !important;
   }
 }
-
-
-
 
 
 /* -------------------------------------------------------------------
