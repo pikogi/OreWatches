@@ -124,8 +124,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
-  margin-top: 6rem;
-  margin-bottom: 1.8rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1958,6 +1958,20 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   bottom: 0;
 }
 
+@media only screen and (max-width: 768px) {
+  #home {
+    background-color: #000000;
+    background-repeat: no-repeat !important;
+    background-size: contain !important; /* Ajusta la imagen al contenedor */
+    background-position: center !important; /* Centra la imagen */
+    height: auto !important; /* Ajusta la altura según el contenido */
+    min-height: 500px !important; /* Define una altura mínima para evitar que se vea muy pequeña */
+  }
+}
+
+
+
+
 
 /* -------------------------------------------------------------------
 * ## home social
@@ -2467,14 +2481,20 @@ html.no-csstransitions .home-content__main {
 * ------------------------------------------------------------------- */
 .services-list {
   width: 84% !important;
-  margin-top: 12rem;
+  margin-top: 1rem;
   padding: 0px;
+
+  display: flex; /* Activa flexbox */
+  justify-content: space-between; /* Espaciado uniforme */
+  gap: 15px; /* Espacio entre los elementos */
+  flex-wrap: wrap;
 }
 
 .services-list .service-item {
-  margin-bottom: .9rem;
-  float: left;
-  margin-bottom:50px;
+  flex: 1; /* Hace que todos tengan el mismo tamaño */
+  min-width: 30%; /* Evita que sean muy pequeños */
+  text-align: center; /* Centra el contenido */
+  margin-bottom: 20px;
 }
 
 .services-list .service-item--center {
@@ -2483,8 +2503,9 @@ html.no-csstransitions .home-content__main {
 }
 
 .services-list .service-item h3 {
-  margin-top: 0;
-  text-align:left;
+  margin-top: 10;
+  margin-bottom: 0;
+  text-align:center;
   color:#E1E1E1;
 }
 
@@ -2496,11 +2517,21 @@ html.no-csstransitions .home-content__main {
   padding-left: 50px;
 }
 
-.services-list .service-text {
-  float: left;
-  color:#E1E1E1;
-  /*margin-left: 7.8rem;*/
+..services-list .service-text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* Alinea el título arriba */
+  align-items: center !important; /* Centra el texto */
+  margin-top: -20px !important; /* Ajusta para subir todo el bloque */
 }
+
+.services-list .service-text h3 {
+  margin-top: 0 !important;
+  margin-bottom: 5px !important; /* Reduce espacio debajo del título */
+  position: relative !important;
+  top: -15px !important; /* Sube el título dentro del bloque */
+}
+
 .services-list .service-text p{
   font-size:17px;
   line-height:28px;
@@ -2511,7 +2542,7 @@ html.no-csstransitions .home-content__main {
 .services-list .service-icon {
   float: left;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .services-list .service-icon img {
@@ -2523,15 +2554,14 @@ html.no-csstransitions .home-content__main {
 * responsive:
 * services
 * ------------------------------------------------------------------- */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 768px) {
   .services-list {
-      max-width: 1000px;
+    flex-direction: column; /* En móviles, apila los elementos */
+    align-items: center; /* Centra los servicios */
   }
-  .services-list .service-item:nth-child(2n+1) {
-      padding-right: 30px;
-  }
-  .services-list .service-item:nth-child(2n+2) {
-      padding-left: 30px;
+
+  .services-list .service-item {
+    min-width: 100%; /* Ocupa el ancho completo */
   }
 }
 
