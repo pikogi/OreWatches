@@ -1856,6 +1856,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-left: 6px;
   text-shadow:0 2px 3px rgba(0,0,0,0.5);
 }
+.titulo-especial {
+  color: #FFFFFF !important; /* Aquí pones el color que quieras, por ejemplo, un tono rojo */
+  text-align: left; /* Cambia la alineación (puedes usar left, right, center) */
+  font-size: 36px; /* Ajusta el tamaño de la fuente */
+  margin-top: 0px; /* Ajusta el margen superior para darle espacio */
+}
+
 
 .home-content h1 {
   font-family: "config-bold", sans-serif;
