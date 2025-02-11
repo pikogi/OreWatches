@@ -1839,7 +1839,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   width: 100%;
   height: 100%;
   vertical-align: middle;
+<<<<<<< HEAD
   padding-bottom: 15.6rem;
+=======
+  padding-bottom: 30.6rem !important;
+>>>>>>> 0325445 (Actualizando con nuevas modificaciones)
   position: relative;
   overflow: hidden;
 }
@@ -1891,6 +1895,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .home-content__buttons .btn {
   border-color: #FFFFFF;
   font-size:16px;
+<<<<<<< HEAD
+=======
+  background-color: #248802 !important;
+>>>>>>> 0325445 (Actualizando con nuevas modificaciones)
   color: #FFFFFF;
   margin: 1.5rem 1.5rem 0 0;
   letter-spacing: .25rem;
@@ -1911,7 +1919,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .home-content__scroll {
   position: absolute;
   right: 9.5rem;
+<<<<<<< HEAD
   bottom: 8.4rem;
+=======
+  bottom: 15.4rem !important;
+>>>>>>> 0325445 (Actualizando con nuevas modificaciones)
 }
 
 .home-content__scroll a {
@@ -1959,7 +1971,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 @media only screen and (max-width: 768px) {
   #home {
+<<<<<<< HEAD
       background-image: url('images/fondo2.jpg');
+=======
+      background-image: url('../images/fondo_mobile.jpg')!important;
+>>>>>>> 0325445 (Actualizando con nuevas modificaciones)
       background-size: cover !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
