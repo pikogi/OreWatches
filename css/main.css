@@ -1831,7 +1831,45 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .no-js .s-home {
   background: #000000;
 }
+.brand-logos-container {
+  width: 100%;
+  overflow: hidden;  /* Evita que los logos fuera del contenedor sean visibles */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: transparent; /* Fondo completamente transparente */
+  padding: 10px 0;
+  white-space: nowrap; /* Evita que los logos se acomoden en varias filas */
+}
 
+.brand-logos {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  animation: scrollLogos 15s linear infinite; /* Animación de desplazamiento */
+}
+
+.brand-logos img {
+  height: 60px; /* Ajusta la altura de los logos */
+  width: auto;
+  filter: brightness(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+
+.brand-logos img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Animación para hacer que los logos se desplacen */
+@keyframes scrollLogos {
+  from {
+    transform: translateX(10%);
+  }
+  to {
+    transform: translateX(-10%);
+  }
+}
 
 /* -------------------------------------------------------------------
 * ## home content
