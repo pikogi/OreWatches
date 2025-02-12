@@ -1511,7 +1511,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 @media (max-width: 768px) {
   .header-logo {
     position: relative; /* Asegura que el logo pueda moverse */
-    top: 0px; /* Ajusta la posición hacia abajo */
+    top: 40px; /* Ajusta la posición hacia abajo */
   }
 
   .header-logo img {
