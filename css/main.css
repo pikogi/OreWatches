@@ -532,7 +532,7 @@ form,
   left: 0;
   right: 0;
   bottom: 0;
-  background: #050505;
+  background: #433E3F;
   z-index: 800;
   height: 100%;
   width: 100%;
@@ -1509,8 +1509,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   transition: all 0.3s ease-in-out;
 }
 @media (max-width: 768px) {
+  .header-logo {
+    position: relative; /* Asegura que el logo pueda moverse */
+    top: 40px; /* Ajusta la posición hacia abajo */
+  }
+
   .header-logo img {
-      width: 140px; /* Reduce el tamaño del logo en pantallas más pequeñas */
+    width: 140px; /* Ajusta el tamaño en mobile */
   }
 }
 .p-back-header {
@@ -1835,18 +1840,23 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   width: 100%;
   overflow: hidden;  /* Evita que los logos fuera del contenedor sean visibles */
   position: absolute;
-  bottom: 0;
+  bottom: 150px;
   left: 0;
   background: transparent; /* Fondo completamente transparente */
   padding: 10px 0;
   white-space: nowrap; /* Evita que los logos se acomoden en varias filas */
 }
 
+.brand-logos-wrapper {
+  display: flex;
+  width: max-content;
+  animation: scrollLogos 30s linear infinite !important; /* Animación de desplazamiento */
+}
+
 .brand-logos {
   display: flex;
-  gap: 30px;
+  gap: 70px;
   align-items: center;
-  animation: scrollLogos 15s linear infinite; /* Animación de desplazamiento */
 }
 
 .brand-logos img {
@@ -1863,14 +1873,40 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 /* Animación para hacer que los logos se desplacen */
 @keyframes scrollLogos {
-  from {
-    transform: translateX(10%);
+  0% {
+    transform: translateX(0);
   }
-  to {
-    transform: translateX(-10%);
+  100% {
+    transform: translateX(-30%); /* Mueve solo el 50% de la longitud total para lograr el bucle continuo */
+  }
+}
+/* Velocidad más rápida en pantallas grandes */
+@media (min-width: 1024px) {
+  .brand-logos-wrapper {
+    animation: scrollLogos 10s linear infinite; /* Más rápido en desktop */
+  }
+
+  @keyframes scrollLogosMobile {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-500%); /* Se mueve completamente para hacer el bucle más fluido */
+    }
   }
 }
 
+/* Velocidad más lenta en pantallas pequeñas */
+@media (max-width: 768px) {
+  .brand-logos-wrapper {
+    animation: scrollLogos 25s linear infinite; /* Más lento en mobile */
+  }
+}
+@media (max-width: 768px) {
+  .brand-logos {
+    gap: 30px; /* Reduce el espacio entre logos en mobile */
+  }
+}
 /* -------------------------------------------------------------------
 * ## home content
 * ------------------------------------------------------------------- */
