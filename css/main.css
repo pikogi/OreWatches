@@ -1021,6 +1021,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   content: counter(definitions, decimal) ". ";
 }
 
+.social-icons i {
+  color: rgba(255, 255, 255, 0.9) !important; /* Asegura que el ícono tenga el color correcto */
+  font-size: 2rem; /* Ajusta el tamaño */
+  align-items: center;
+}
 
 /**
 * Pull Quotes
@@ -1409,6 +1414,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     display: flex;
     justify-content: center;
     align-items: center;
+    top: -5px;;
     gap: 15px;
     position:absolute;
     left: 0;
@@ -1509,7 +1515,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 @media (max-width: 768px) {
   .header-logo {
     position: relative; /* Asegura que el logo pueda moverse */
-    top: 40px; /* Ajusta la posición hacia abajo */
+    top: 40px;
+    margin-left: 0; /* Ajusta la posición hacia abajo */
   }
 
   .header-logo img {
@@ -1808,6 +1815,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   background-color: transparent;
   position: relative;
   display: table;
+  background-image: url('images/Fondo(5).jpg'); /* Asegúrate de que esté aquí */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Esto asegura que el fondo se quede fijo */
 }
 
 .s-home .shadow-overlay {
@@ -1816,9 +1827,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   left: 0;
   width: 100%;
   height: 100%;
-  min-height:100%;
+  min-height: 100%;
   opacity: .5;
   background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 1; /* Colocamos el overlay por encima del fondo pero debajo del contenido */
 }
 
 .s-home .overlay {
@@ -1829,6 +1841,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   height: 100%;
   opacity: .6;
   background-color: #000000;
+  z-index: 2; /* Aseguramos que esta capa esté encima del fondo pero debajo del contenido */
 }
 
 .no-js .s-home {
@@ -2053,6 +2066,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   position: absolute;
   right: 7.2rem;
   bottom: 0;
+  
+  #home {
+    background-image: url('../images/fondo(5).jpg')!important;
+    background-size: cover !important;
+    background-position: center bottom !important;
+    background-repeat: no-repeat !important;
+}
 }
 @media only screen and (max-width: 768px) {
   #home {
@@ -2386,7 +2406,7 @@ html.no-csstransitions .home-content__main {
 .s-about {
   display: block !important;
   padding-top: 10.2rem;
-  padding-bottom: 10rem;
+  padding-bottom: 25rem;
   background-color: #121212;
   color: #fff !important;
   position: relative;
@@ -3720,7 +3740,7 @@ html.no-csstransitions .home-content__main {
 *
 * ------------------------------------------------------------------- */
 footer {
-  padding: 9rem 0 6rem;
+  padding: 6rem 0 6rem;
   font-family: "config-light", sans-serif;
   font-size: 15px;
   line-height: 2;
