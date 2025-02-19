@@ -1403,9 +1403,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   background-color: rgba(163, 11, 142, 0.7);  /* Color llamativo */
     color: white;
     text-align: center;
-    padding: 10px 20px;
     font-size: 16px;
-    height: 45px;
+    height: 35px;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -1426,7 +1425,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     .top-bar {
         margin-top: 0px;
         font-size: 12px;
-        height: 40px; /* Puedes reducir el margen si es necesario */
+        height: 30px; /* Puedes reducir el margen si es necesario */
     }
   }
 
@@ -1949,7 +1948,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   }
   /* Reducir tamaño de h1 en pantallas pequeñas */
   .home-content h1 {
-      font-size: 4rem !important; /* Puedes ajustar este valor como lo desees */
+      font-size: 3.7rem !important; /* Puedes ajustar este valor como lo desees */
       margin-bottom: 0rem;
       white-space: normal !important;
       display: flex;
