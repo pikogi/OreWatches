@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="detalle-producto">
+        <p>Cargando detalles del producto...</p>
+    </div>
+
+    <script>
+        async function cargarDetalleProducto() {
+            const params = new URLSearchParams(window.location.search);
+            const idProducto = params.get('id');
+
+            if (!idProducto) {
+                document.getElementById('detalle-producto').innerHTML = '<p>ID de producto no encontrado.</p>';
+                return;
+            }
+
+            const response = await fetch(
+                `https://cdn.contentful.com/spaces/${CONFIG.CONTENTFUL.SPACE_ID}/environments/master/entries/${idProducto}?access_token=${CONFIG.CONTENTFUL.ACCESS_TOKEN}`
+            );
+            const producto = await response.json();
+
+            const imagenUrl = producto.fields.imagen.fields.file.url;
+            const nombre = producto.fields.nombre;
+            const marca = producto.fields.marca;
+            const precio = producto.fields.precio;
+            const descripcion = producto.fields.descripcion; // Suponiendo que agregas descripción en Contentful
+
+            document.getElementById('detalle-producto').innerHTML = `
+                <img src="https:${imagenUrl}" alt="${nombre}" style="max-width:300px;">
+                <h1>${nombre}</h1>
+                <p>Marca: ${marca}</p>
+                <p>Precio: ${precio ? `$${precio}` : 'Consultar precio'}</p>
+                <p>Descripción: ${descripcion || 'Sin descripción'}</p>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarDetalleProducto);
+    </script>
+</body>
+</html>

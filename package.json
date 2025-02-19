@@ -12,6 +12,7 @@
   "license": "ISC",
   "homepage": "https://github.com/pikogi/Puente3#readme",
   "dependencies": {
-    "serve": "^14.2.4"
+    "serve": "^14.2.4",
+    "stripe": "^17.6.0"
   }
 }
