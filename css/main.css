@@ -1431,8 +1431,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     .top-bar {
         margin-top: 0px;
         font-size: 12px;
-        height: 10px; /* Puedes reducir el margen si es necesario */
-    }
+        height: 30px;
+          }
   }
 
 /* Ajusta el header para que no quede oculto */
@@ -1980,6 +1980,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   position: relative;
   margin:0 auto;
   text-align: center;
+  top:-30px;
 }
 
 .home-content__buttons .btn {
