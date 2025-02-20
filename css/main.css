@@ -1414,7 +1414,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: -5px;;
+    top: -5px;
     gap: 15px;
     position:absolute;
     left: 0;
@@ -1431,7 +1431,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     .top-bar {
         margin-top: 0px;
         font-size: 12px;
-        height: 30px; /* Puedes reducir el margen si es necesario */
+        height: 10px; /* Puedes reducir el margen si es necesario */
     }
   }
 
@@ -1815,10 +1815,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   background-color: transparent;
   position: relative;
   display: table;
-  background-image: url('images/Fondo(5).jpg'); /* Asegúrate de que esté aquí */
+  background-image: url('../images/fondo5.jpg'); /* Asegúrate de que esté aquí */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Esto asegura que el fondo se quede fijo */
 }
 
 .s-home .shadow-overlay {
@@ -1949,8 +1948,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-top: 0;
   margin-bottom: 0;
   color: #FFFFFF;
+  font-weight: bold;
   white-space: nowrap; /* Evita que el texto se separe en escritorio */
   overflow: hidden;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+
 }
 /* Ajustes para h1 y h3 en pantallas móviles */
 @media (max-width: 768px) {
@@ -2067,16 +2069,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   right: 7.2rem;
   bottom: 0;
   
-  #home {
-    background-image: url('../images/fondo(5).jpg')!important;
-    background-size: cover !important;
-    background-position: center bottom !important;
-    background-repeat: no-repeat !important;
-}
 }
 @media only screen and (max-width: 768px) {
   #home {
-      background-image: url('../images/fondo(5).jpg')!important;
+      background-image: url('../images/fondo5.jpg')!important;
       background-size: cover !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
