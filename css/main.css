@@ -117,7 +117,7 @@ a:hover, a:active {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "config-medium", sans-serif;
-  color: #2D2E34;
+  color: #FFFFFF;
   font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
@@ -1587,7 +1587,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .header-nav__content {
   position: relative;
   left: 50px;
-  opacity: 0;
+  opacity: 1;
   visibility: hidden;
 }
 
@@ -1815,7 +1815,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   background-color: transparent;
   position: relative;
   display: table;
-  background-image: url('../images/fondo5.jpg'); /* Asegúrate de que esté aquí */
+  background-image: url('../images/fondo5.jpg') !important; /* Asegúrate de que esté aquí */
   background-size: cover;
   background-position: center;
 }
@@ -1827,9 +1827,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  opacity: .5;
+  opacity: 0.5;
   background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-  z-index: 1; /* Colocamos el overlay por encima del fondo pero debajo del contenido */
 }
 
 .s-home .overlay {
@@ -1940,19 +1939,17 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin-top: 0;
   margin-bottom: 1.2rem;
   margin-left: 6px;
-  text-shadow:0 2px 3px rgba(0,0,0,0.5);
-}
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1)!important;}
+
 .home-content h1 {
   font-family: "config-bold", sans-serif;
   font-size: 6.7rem !important;
   margin-top: 0;
   margin-bottom: 0;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-weight: bold;
   white-space: nowrap; /* Evita que el texto se separe en escritorio */
   overflow: hidden;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-
 }
 /* Ajustes para h1 y h3 en pantallas móviles */
 @media (max-width: 768px) {
@@ -1975,17 +1972,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   .home-content h3 {
       font-size: 14px !important; /* Ajusta este tamaño según lo que necesites */
   }
-  .home-content__buttons .btn {
-    border-color: #FFFFFF;
-    font-size:16px;
-    background-color: transparent;
-    color: #FFFFFF;
-    margin: 4.5rem 4.5rem 0 0;
-    letter-spacing: .25rem;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    align-items: center;
-  }
+
 }
 .home-content__main {
   width:84%;
@@ -1995,30 +1982,32 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   text-align: center;
 }
 
-.home-content__buttons {
-  text-align: center;
-}
-
 .home-content__buttons .btn {
   border-color: #FFFFFF;
-  font-size:16px;
+  font-size: 16px;
   background-color: transparent;
   color: #FFFFFF;
   margin: 3.5rem 3.5rem 0 0;
   letter-spacing: .25rem;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 10; /* Asegura que esté por encima de otras capas */
+  pointer-events: auto; /* Garantiza que el botón sea clickeable */
+}
+
+.home-content__buttons .btn:hover {
+  background: #FFFFFF !important;
+  color: #000000;
+  border-color: #FFFFFF;
 }
 
 .home-content__buttons .btn:last-child {
   margin-right: 0;
 }
 
-.home-content__buttons .btn:hover,
-.home-content__buttons .btn:focus {
-  background: #FFFFFF !important;
-  color: #000000;
-}
 
 .home-content__scroll {
   position: absolute;
@@ -2653,8 +2642,9 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width: 900px) {
     .productos-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas en tablets */
+        gap: 10px;
+        width: 100%;
     }
 }
 
