@@ -35,17 +35,19 @@ async function obtenerProductos() {
             productElement.className = 'producto';
             
             productElement.innerHTML = `
-                <a href="ruta-a-detalle-del-producto">
-                    <div class="carousel-container">
-                        ${imagenesHtml}
-                        <button class="carousel-control prev" onclick="changeImage(event, 'prev')">❮</button>
-                        <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
-                    </div>
-                </a>
-                <div class="marca">${producto.fields.marca || ''}</div>
-                <h3>${producto.fields.nombre}</h3>
-                <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
-            `;
+    <a href="ruta-a-detalle-del-producto" class="product-link">
+        <div class="carousel-container">
+            ${imagenesHtml}
+            <button class="carousel-control prev" onclick="changeImage(event, 'prev')">❮</button>
+            <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
+        </div>
+        <div class="product-info">
+            <div class="marca">${producto.fields.marca || ''}</div>
+            <h3>${producto.fields.nombre}</h3>
+            <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
+        </div>
+    </a>
+`;
             
             gridContainer.appendChild(productElement);
         });

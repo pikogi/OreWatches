@@ -82,7 +82,6 @@ body {
   color: #757575;
   margin: 0;
   padding: 0;
-
 }
 
 /*ScrollBar*/
@@ -1392,21 +1391,39 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 *
 * ------------------------------------------------------------------- */
 .s-header {
-  width: 84%;
-  margin: 0 8%;
+  width: 100%;
+  margin: 0;
   height: 96px;
   background-color: transparent;
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
+  padding:  0 8%;
+  left: 0;
   top: 0;
-  z-index: 500;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease-in-out;
 }
+.s-header.scrolled {
+  background-color: black; /* Cambia a negro al hacer scroll */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;  /* Alinea verticalmente el logo y el menú */
+  justify-content: space-between;  /* Espacio entre el logo y el menú */
+  width: 100%;
+  height: 100%;  /* Asegura que la altura del header sea uniforme */
+}
+
+
 /* -------------------------------------------------------------------
 * ## sidebar superor
 * ------------------------------------------------------------------- */
 /* Estilos para la barra superior */
-.top-bar {
+/*.top-bar {
   background-color: rgba(163, 11, 142, 0.7);  /* Color llamativo */
-    color: white;
+    /*color: white;
     text-align: center;
     font-size: 16px;
     height: 35px;
@@ -1419,25 +1436,25 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     position:absolute;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Asegura que esté por encima del header */
-}
-    .top-bar p {
-      margin: 0; /* Eliminar márgenes que pueden desalinearlo */
+    z-index: 1000; /* Asegura que esté por encima del header
+}*/
+    /*.top-bar p {
+      margin: 0; /* Eliminar márgenes que pueden desalinearlo
       display: flex;
       align-items: center;
   }
   @media (max-width: 500px) {
-    /* Ajustar margen superior para que el header no quede oculto */
+    /* Ajustar margen superior para que el header no quede oculto
     .top-bar {
         margin-top: 0px;
         font-size: 12px;
         height: 30px;
           }
   }
-
+*/
 /* Ajusta el header para que no quede oculto */
 .s-header {
-    margin-top: 50px; /* Ajustar según el alto de la barra */
+    margin-top: 0px; /* Ajustar según el alto de la barra */
 }
 @media (max-width: 768px) {
   /* Ajustar margen superior para que el header no quede oculto */
@@ -1489,22 +1506,15 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 * ## header logo
 * ------------------------------------------------------------------- */
 .header-logo {
-  display: inline-block;
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 20%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  z-index: 501;
-}
+  display: flex;
+  position: relative;
+  align-items: center;
+ }
 
 .header-logo a {
   display: block;
   padding: 0;
-  margin-top:40px;
-  margin-left:4px;
+  margin:0;
   outline: 0;
   border: none;
   width: 150px;
@@ -1515,12 +1525,11 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 @media (max-width: 768px) {
   .header-logo {
     position: relative; /* Asegura que el logo pueda moverse */
-    top: 40px;
-    margin-left: 0; /* Ajusta la posición hacia abajo */
+    margin-left: -20px; /* Ajusta la posición hacia abajo */
   }
 
   .header-logo img {
-    width: 140px; /* Ajusta el tamaño en mobile */
+    width: 120px; /* Ajusta el tamaño en mobile */
   }
 }
 .p-back-header {
@@ -1556,7 +1565,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
   transform: translateX(100%);
-  visibility: hidden;
 }
 
 .header-nav a, .header-nav a:visited {
@@ -1705,7 +1713,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 * ## mobile menu toggle
 * ------------------------------------------------------------------- */
 .header-menu-toggle {
-  display:none;
+  display:block;
+  cursor: pointer;
   position: fixed;
   right: 38px;
   top: 24px;
@@ -1957,6 +1966,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   .home-content__buttons .btn{
     text-align: center;
     align-items: center !important;
+    top: 30rem;
   }
   /* Reducir tamaño de h1 en pantallas pequeñas */
   .home-content h1 {
@@ -1988,7 +1998,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   font-size: 16px;
   background-color: transparent;
   color: #FFFFFF;
-  margin: 3.5rem 3.5rem 0 0;
+  padding: 0rem 10rem;
+  margin:30.5rem 50.5rem 0 0;
   letter-spacing: .25rem;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -2632,6 +2643,15 @@ html.no-csstransitions .home-content__main {
     margin: 10px 0; /* Reducido de 20px */
 }
 
+.producto h3:hover {
+  transform: scale(1.05);
+  color: rgba(163, 11, 142, 1);
+  font-weight: bold;
+}
+
+.producto .precio:hover {
+  transform: scale(1.05);
+}
 
 /* responsive: Catálogo
  * ------------------------------------------------------------------- */
