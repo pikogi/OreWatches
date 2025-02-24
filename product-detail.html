@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="s-header">
+    <!-- Contenido de tu encabezado -->
+    </header>
+    <div id="product-detail">Cargando...</div>
+
+    <script src="js/config.js"></script>
+    <script src="js/product-detail.js"></script>
+    <script>
+        // Verifica si el parámetro 'id' está disponible en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        console.log("ID del producto en la URL:", productId); // Esto debería mostrar el ID en la consola
+      </script>
+      
+
+</body>
+</html>

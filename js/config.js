@@ -27,13 +27,19 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.addEventListener("DOMContentLoaded", function () {
     let header = document.querySelector(".s-header");
-  
+
+    if (!header) {
+        console.error("No se encontró el elemento con la clase .s-header");
+        return; // Evita que el código siga ejecutándose si el header no existe
+    }
+
     window.addEventListener("scroll", function () {
-      if (window.scrollY > 50) { // Cuando se haga scroll de más de 50px
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
     });
-  });
+});
+
   
