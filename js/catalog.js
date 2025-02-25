@@ -1,7 +1,6 @@
 async function obtenerProductos() {
     const productList = document.getElementById('product-list');
     
-    
     try {
         const response = await fetch(
             `https://cdn.contentful.com/spaces/${CONFIG.CONTENTFUL.SPACE_ID}/environments/master/entries?access_token=${CONFIG.CONTENTFUL.ACCESS_TOKEN}&content_type=reloj`
@@ -10,14 +9,13 @@ async function obtenerProductos() {
         const data = await response.json();
         console.log("Datos completos de Contentful:", data);
 
-        
         // Crear el contenedor grid
         const gridContainer = document.createElement('div');
         gridContainer.className = 'productos-grid';
 
         data.items.forEach(producto => {
             // Verifica el ID del producto
-            console.log(`ID del productos: ${producto.sys.id}`);
+            console.log(`ID del producto: ${producto.sys.id}`);
 
             // Obtener el campo "imagenes", que es ahora un array
             const imagenes = producto.fields.imagenes || [];  // Asegúrate de que sea un array
@@ -46,21 +44,19 @@ async function obtenerProductos() {
             console.log(`Enlace generado: ${productUrl}`); // Verificar si se genera bien el enlace
             
             productElement.innerHTML = `
-            <a href="product-detail.html?id=${producto.sys.id}" class="product-link">
+            <a href="product-detail?id=${producto.sys.id}" class="product-link">
                 <div class="carousel-container">
                     ${imagenesHtml}
                     <button class="carousel-control prev" onclick="changeImage(event, 'prev')">❮</button>
                     <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
                 </div>
                 <div class="product-info">
-                    <div class="marca">${producto.fields.marca || ''}</div>
                     <h3>${producto.fields.nombre}</h3>
                     <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
                 </div>
             </a>
         `;
         
-            
             gridContainer.appendChild(productElement);
         });
 

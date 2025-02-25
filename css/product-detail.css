@@ -1,0 +1,240 @@
+/* Estilos generales para product-detail */
+body {
+    background-color: #121212; /* Fondo negro */
+    color: #fff;
+    font-family: "config-medium", sans-serif;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 0; /* Eliminé el padding excesivo */
+}
+
+.container {
+    display: flex;
+    align-items: flex-start; /* Asegura que el texto comience arriba */
+    justify-content: center;
+    padding: 5rem;
+    max-width: 1200px;
+    margin: 10rem auto 0 auto;
+    margin-bottom: 10rem;
+    gap: 20px; /* Espaciado entre la imagen y el texto */
+}
+
+/* Sección de la imagen del producto */
+
+.product-image img {
+    position: relative;
+    max-width: 500px;
+    cursor: zoom-in;
+    transition: transform 0.3s;
+}
+
+/* Estilos para la galería de imágenes adicionales */
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Reducido el espacio entre miniaturas */
+    margin-top: 10px;
+}
+
+.thumbnail-container img {
+    width: 60px; /* Ajusté el tamaño */
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+}
+
+.thumbnail-container img:hover,
+.thumbnail-container img.active {
+    border: 2px solid #7A7265;
+}
+
+/* Sección de la información del producto */
+.product-info {
+    flex: 1;
+    max-width: 50%;
+    padding-left: 20px;
+    margin-top: -8rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Asegura que el texto inicie desde arriba */
+}
+
+.product-info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.product-info .marca {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold; /* Agregar negrita a la etiqueta Marca */
+}
+
+.product-info .modelo,
+.product-info .referencia {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.product-info .descripcion {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.product-info .precio {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white; /* Resaltar el precio */
+}
+
+/* 📱 Responsive: En móviles, el texto se alinea debajo de las imágenes */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .product-info {
+        margin-top: 2rem;
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    .product-image {
+        max-width: fit-content;
+        text-align: center;
+        align-items: center;
+    }
+
+    .thumbnail-container {
+        justify-content: center;
+    }
+}
+
+.boton-consulta {
+    background-color: #7A7265;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border: none;
+    padding: 0px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.boton-consulta:hover {
+    background-color: white;
+    color: #7A7265;
+}
+
+/* Estilos para la galería de productos relacionados */
+.related-products {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.related-products h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.related-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.related-item {
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+}
+
+.related-item img {
+    width: 100%;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+.related-item p {
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Estilos para la imagen ampliada con lupa */
+.zoom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: zoom-out;
+}
+
+.zoom-container img {
+    max-width: none;
+    height: auto;
+    transform-origin: center;
+    transition: transform 0.2s ease-out;
+}
+
+.zoomable-image {
+    cursor: zoom-in;
+}
+/* Contenedor del carrusel */
+.carousel-container {
+    position: absolute;
+    width: 50%; /* Aseguramos que ocupe el ancho completo de la imagen */
+    max-width: 500px; /* Tamaño máximo basado en el tamaño de la imagen */
+    margin: 0 auto; /* Centrado horizontal */
+    overflow: hidden; /* Ocultar cualquier parte fuera de la imagen */
+}
+
+/* Estilo de las imágenes dentro del carrusel */
+.carousel-item img {
+    width: 100%; /* Aseguramos que la imagen ocupe todo el espacio del contenedor */
+    height: auto;
+}
+
+/* Estilo de los botones de navegación */
+.carousel-control {
+    position: absolute; /* Los posicionamos dentro del contenedor */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    color: white; /* Color de los íconos */
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón izquierdo (prev) */
+.carousel-control.prev {
+    left: 20px; /* 10px desde el borde izquierdo */
+}
+
+/* Botón derecho (next) */
+.carousel-control.next {
+    right: 10px; /* 10px desde el borde derecho */
+}
+
+/* Contenedor de la imagen */
+.product-image {
+    position: relative; /* Necesario para que los botones se posicionen sobre la imagen */
+    max-width: 500px; /* El tamaño máximo de la imagen */
+}
