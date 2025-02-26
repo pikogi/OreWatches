@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <p class="marca">Marca: ${producto.marca || 'Marca no disponible'}</p>
                         <p class="modelo">Modelo: ${producto.nombre || 'Modelo no disponible'}</p>
                         <p class="referencia">Referencia: ${producto.referencia || 'Sin referencia'}</p>
-                        <p class="descripcion">${producto.descripcion || 'Sin descripción'}</p>
+                        <p class="descripcion"> Descripción: ${producto.descripcion || 'Sin descripción'}</p>
                         <p class="precio">${producto.precio || 'Consultar precio'}</p>
                         <button class="boton-consulta">Consultar</button>
                     </div>
