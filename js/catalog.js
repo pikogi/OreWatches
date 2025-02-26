@@ -9,6 +9,9 @@ async function obtenerProductos() {
         const data = await response.json();
         console.log("Datos completos de Contentful:", data);
 
+        //Filtro
+        mostrarFiltros (data.items)
+
         // Crear el contenedor grid
         const gridContainer = document.createElement('div');
         gridContainer.className = 'productos-grid';
@@ -53,6 +56,8 @@ async function obtenerProductos() {
                 <div class="product-info">
                     <h3>${producto.fields.nombre}</h3>
                     <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
+                    <span class="marca">${producto.fields.marca}</span>    
+
                 </div>
             </a>
         `;
@@ -82,6 +87,35 @@ async function obtenerProductos() {
 document.addEventListener('DOMContentLoaded', obtenerProductos);
 console.log("El DOM está listo");
 
+function mostrarFiltros(productos) {
+    const filtrosContainer = document.getElementById('filters');
+    if (!filtrosContainer) return;
+
+    const marcas = [...new Set(productos.map(p => p.fields.marca))].filter(Boolean);
+    filtrosContainer.innerHTML = `
+        <select id="filtro-marca">
+            <option value="">Todas las marcas</option>
+            ${marcas.map(marca => `<option value="${marca}">${marca}</option>`).join('')}
+        </select>
+        <button onclick="aplicarFiltros()">Filtrar</button>
+    `;
+}
+
+function aplicarFiltros() {
+    console.log("filtra")
+    const marcaSeleccionada = document.getElementById('filtro-marca').value;
+    console.log(marcaSeleccionada)
+
+    const productos = document.querySelectorAll('.producto');
+    console.log(productos)
+    productos.forEach(producto => {
+        const marca = producto.querySelector('.marca').textContent;        
+        let mostrar = true;
+        if (marcaSeleccionada && marca !== marcaSeleccionada) mostrar = false;
+        
+        producto.style.display = mostrar ? 'block' : 'none';
+    });
+}
 
 // Función para cambiar las imágenes del carrusel
 function changeImage(event, direction) {

@@ -23,6 +23,7 @@
             body {
               font-family: 'Lato', sans-serif;
               font-weight: 400;
+              background-color: white;
             }
             h1, h2, h3, h4, h5, h6 {
               font-family: 'Lato', sans-serif;
@@ -32,7 +33,7 @@
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/png" href="images/favicon.png">
     </head>
-    <body id="top">
+    <body id="top" >
 <!-- Botón flotante de WhatsApp -->
 <!-- <a href="https://wa.me/3517340111?text=Hola%20me%20gustaria%20cotizar%20el%20siguiente%20reloj:" target="_blank" class="whatsapp-float">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
@@ -43,7 +44,7 @@
         🕵️ No encuentras el modelo que buscas? Ponte en contacto <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon"> 
     </div>
     <!-- Header -->
-    <header class="s-header">
+    <header class="s-header" style="background-color: #212121;">
         <div class="header-content"> 
         <div class="header-logo">
             <a class="site-logo" href="index.html">
@@ -66,15 +67,18 @@
         </a>
         </div>
     </header>
-
- <!-- Titulo catalogo -->
-<section id="about" class="s-about">
-    <div class="row section-header has-bottom-sep" data-aos="fade-up">
-        <div class="col-full">
-            <h1 class="display-2">Relojes disponibles</h1>
+    <!-- Titulo catalogo -->    
+    <section id="catalogo" class="s-catalogo" style="margin-top: 15rem; margin-bottom: -4rem;">
+        <div class="row section-header has-bottom-sep" data-aos="fade-up">
+            <div class="col-full">
+                <h1 class="display-2">Relojes disponibles</h1>
+            </div>
         </div>
-    </div>
-     <!-- Catalogo -->
+    </section>
+    
+     <!-- filters -->
+    <section id="filters"></section>
+    <!-- Catalogo -->
     <section id="catalogo">
         <div id="product-list"></div>
     </section>

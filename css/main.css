@@ -1242,7 +1242,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   font-family: "config-bold", sans-serif;
   font-size: 42px;
   line-height: 1.255;
-  color: white;
+  color: #121212;
   margin-top: -10px;
   margin-bottom: -10px;
 }
@@ -1352,6 +1352,51 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
+.catalogo-imagen {
+  width: 100%;
+  height: 250px !important;
+  height: auto; /* Mantiene la proporción */
+  display: block; /* Elimina espacios blancos alrededor */
+}
+
+#filters {
+  margin-left: 4rem !important;
+  display: flex;
+  gap: 50px; /* Espacio entre el select y el botón */
+  margin: 0;
+  align-items: center;
+  margin-bottom: 10px !important;
+}
+
+#filtro-marca {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+#filters button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  margin-top: -15px;
+  height: 50px; /* Igualar la altura al select */
+  display: flex;
+  align-items: center; /* Centrar el texto verticalmente */
+  justify-content: center;
+}
+
+#filters button:hover {
+  background-color: #333;
+}
+
 
 /* -------------------------------------------------------------------
 * responsive:
@@ -1405,7 +1450,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   transition: background-color 0.3s ease-in-out;
 }
 .s-header.scrolled {
-  background-color: black; /* Cambia a negro al hacer scroll */
+  background-color: #121212; /* Cambia a negro al hacer scroll */
 }
 
 .header-content {
@@ -2579,12 +2624,19 @@ html.no-csstransitions .home-content__main {
     margin: 0 auto;
     max-width: 100%;
     padding: 20px;
-    background-color: #121212;
+    background-color: white;
 
 }
 
 .catalogo {
   position: absolute; /* Asegura que la línea se posicione respecto a esta sección */
+}
+
+.s-catalogo {
+  background-color: white; /* Fondo oscuro */
+  padding: 60px 20px;
+  margin-bottom: -60px;
+  text-align: center;
 }
 
 .catalogo__line {
@@ -2603,10 +2655,8 @@ html.no-csstransitions .home-content__main {
 }
 
 .producto {
-    background: #121212;
+    background: white;
     padding: 15px; /* Reducido de 20px */
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -2629,7 +2679,7 @@ html.no-csstransitions .home-content__main {
 }
 
 .producto h3 {
-    color: #FFFFFF;
+    color: black;
     font-size: 1.5rem; /* Reducido de 2rem */
     margin: 10px 0; /* Reducido de 10px */
     font-weight: 450;
@@ -2651,8 +2701,12 @@ html.no-csstransitions .home-content__main {
 .producto .precio {
     font-weight: bold;
     font-size: 1.3rem; /* Reducido de 2.2rem */
-    color: #FFFFFF;
+    color: black;
     margin: 10px 0; /* Reducido de 20px */
+}
+
+.producto .marca {
+  visibility: hidden;
 }
 
 .producto h3:hover {
@@ -2749,6 +2803,7 @@ html.no-csstransitions .home-content__main {
   cursor: pointer;
   z-index: 10;
   transition: color 0.3s ease; /* Transición suave del color */
+  visibility: hidden;
 
 }
 

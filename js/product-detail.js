@@ -1,15 +1,47 @@
+// ✅ 1️⃣ Definir las funciones globalmente (fuera de DOMContentLoaded)
+function cambiarImagenCarrusel(direccion) {
+    if (!window.imagenUrls || window.imagenUrls.length === 0) return;
+
+    if (direccion === 'next') {
+        window.imagenIndex = (window.imagenIndex + 1) % window.imagenUrls.length;
+    } else if (direccion === 'prev') {
+        window.imagenIndex = (window.imagenIndex - 1 + window.imagenUrls.length) % window.imagenUrls.length;
+    }
+
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+        mainImage.src = window.imagenUrls[window.imagenIndex];
+    }
+
+    // Actualizar miniaturas activas
+    document.querySelectorAll('.thumbnail').forEach((thumbnail, index) => {
+        thumbnail.classList.toggle('active', index === window.imagenIndex);
+    });
+}
+
+function cambiarImagen(url, elemento) {
+    const mainImage = document.getElementById('main-image');
+    if (mainImage) {
+        mainImage.src = url;
+    }
+
+    document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+        thumbnail.classList.remove('active');
+    });
+
+    elemento.classList.add('active');
+}
+
+// ✅ 2️⃣ Ahora, ejecutar el código una vez que el DOM esté listo
 document.addEventListener('DOMContentLoaded', async function () {
-    // Función para obtener parámetros de la URL
     function obtenerParametroURL(nombre) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(nombre);
     }
 
-    // Obtener el ID del producto de la URL
     const productId = obtenerParametroURL('id');
-    console.log('ID del producto:', productId); // Verifica si el ID se obtiene correctamente
+    console.log('ID del producto:', productId);
 
-    // Verifica si hay un ID válido
     if (productId) {
         await obtenerDetallesProducto(productId);
     } else {
@@ -52,12 +84,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                         const imagenUrl = `https:${imagenAsset.fields.file.url}`;
                         imagenUrls.push(imagenUrl);
     
-                        // Definir la imagen principal (la primera por defecto)
                         if (index === 0) {
                             imagenPrincipal = `<img id="main-image" class="zoomable-image" src="${imagenUrl}" alt="${producto.nombre}">`;
                         }
     
-                        // Agregar miniaturas
                         miniaturasHtml += `
                             <img class="thumbnail ${index === 0 ? 'active' : ''}" src="${imagenUrl}" alt="${producto.nombre}" onclick="cambiarImagen('${imagenUrl}', this)">
                         `;
@@ -65,7 +95,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             }
     
-            // Insertar el contenido del producto en el DOM
             productDetail.innerHTML = `
                 <div class="detalle-producto container">
                     <div class="product-image">
@@ -82,29 +111,23 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <p class="descripcion">${producto.descripcion || 'Sin descripción'}</p>
                         <p class="precio">${producto.precio || 'Consultar precio'}</p>
                         <button class="boton-consulta">Consultar</button>
-
                     </div>
                 </div>
             `;
     
-            // Ahora que el contenido está en el DOM, seleccionamos los botones
             const botonesConsulta = document.querySelectorAll('.boton-consulta');
-    
-            // Recorremos cada botón y le asignamos el evento
             botonesConsulta.forEach((boton) => {
                 boton.addEventListener('click', () => {
-                    const productoUrl = window.location.href; // Obtener la URL completa de la página
+                    const productoUrl = window.location.href;
                     const mensaje = `Hola%20me%20gustaría%20consultar%20el%20producto%20${encodeURIComponent(producto.nombre)}%20(Ver%20más%20en%20${encodeURIComponent(productoUrl)})`;
-                    const numeroWhatsapp = '3517340111'; // Cambia este número por el adecuado
+                    const numeroWhatsapp = '3517340111';
                     window.open(`https://wa.me/${numeroWhatsapp}?text=${mensaje}`, '_blank');
                 });
             });
     
-            // Guardar imágenes en una variable global para usar en el carrusel
             window.imagenUrls = imagenUrls;
-            window.imagenIndex = 0; // Índice de la imagen actual
-    
-            // Aplicar funcionalidad de zoom
+            window.imagenIndex = 0;
+
             aplicarZoom();
     
         } catch (error) {
@@ -114,8 +137,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             `;
         }
     }
-    
-    // Función para la lupa
+
     function aplicarZoom() {
         const productImage = document.querySelector(".zoomable-image");
         if (!productImage) return;
