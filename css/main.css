@@ -1890,7 +1890,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 * ------------------------------------------------------------------- */
 @media only screen and (max-width: 600px) {
   .s-header {
-      height: 90px;
+      height: 100px;
       width:100%;
       margin:0;
 
@@ -2138,8 +2138,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .home-content__scroll a::before {
-  border-bottom: 2px solid #DCDFDF;
-  border-right: 2px solid #DCDFDF;
+  border-bottom: 2px solid #0daeae;
+  border-right: 2px solid #0cd9d9;
   content: '';
   display: block;
   height: 8px;
@@ -2157,6 +2157,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   transform: rotate(45deg);
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
+  visibility: hidden;
 }
 
 .home-content__line {
@@ -2675,29 +2676,20 @@ html.no-csstransitions .home-content__main {
 
 .s-catalogo {
   background-color: white; /* Fondo oscuro */
-  padding: 60px 20px;
-  margin-bottom: -60px;
   text-align: center;
-}
+  padding: 60px;
+  margin-bottom: -60px;
 
-.catalogo__line {
-  display: block;
-  position: absolute;
-  right: 7.2rem; /* Centrar la línea */
-  width: 2px;
-  height: 10.2rem;
-  background-color: #FFFFFF;
 }
 
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Forzamos 4 columnas en desktop */
-
-}
+  }
 
 .producto {
     background: white;
-    padding: 15px; /* Reducido de 20px */
+    padding: 10px; /* Reducido de 20px */
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -2743,7 +2735,7 @@ html.no-csstransitions .home-content__main {
     font-weight: bold;
     font-size: 1.3rem; /* Reducido de 2.2rem */
     color: black;
-    margin: 10px 0; /* Reducido de 20px */
+    margin: -10px 0; /* Reducido de 20px */
 }
 
 .producto .marca {
@@ -2773,6 +2765,8 @@ html.no-csstransitions .home-content__main {
         grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas en tablets */
         gap: 10px;
         width: 100%;
+        row-gap: -10px !important;
+        padding: 0;
     }
 }
 
@@ -2780,10 +2774,11 @@ html.no-csstransitions .home-content__main {
     .productos-grid {
         grid-template-columns: repeat(2, 1fr); /* Mantenemos 2 columnas en móvil */
         gap: 10px;
+        row-gap: -10px !important;
     }
     
     .producto {
-        padding: 10px;
+        padding: 0px !important;
     }
     
     .producto h3 {
@@ -2794,10 +2789,6 @@ html.no-csstransitions .home-content__main {
         font-size: 1.3rem;
     }
     
-    .btn-consultar {
-        padding: 8px 15px;
-        font-size: 1.2rem;
-    }
 }
 
 @media only screen and (max-width: 400px) {
