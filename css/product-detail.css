@@ -1,11 +1,13 @@
 /* Estilos generales para product-detail */
 body {
-    background-color: #121212; /* Fondo negro */
-    color: #fff;
+    background-color: white; /* Fondo negro */
+    color: black;
     font-family: "config-medium", sans-serif;
     font-size: 1.3rem;
     margin: 0;
     padding: 0; /* Eliminé el padding excesivo */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+
 }
 
 .container {
@@ -23,9 +25,12 @@ body {
 
 .product-image img {
     position: relative;
-    max-width: 500px;
+    max-width: 100%;
+    height: auto;
     cursor: zoom-in;
     transition: transform 0.3s;
+    overflow: hidden;
+    display: block;
 }
 
 /* Estilos para la galería de imágenes adicionales */
@@ -64,6 +69,7 @@ body {
 .product-info h1 {
     font-size: 2em;
     margin-bottom: 10px;
+    color: black;
 }
 
 .product-info .marca {
@@ -87,7 +93,7 @@ body {
 .product-info .precio {
     font-size: 1.5em;
     font-weight: bold;
-    color: white; /* Resaltar el precio */
+    color: black; /* Resaltar el precio */
 }
 
 /* 📱 Responsive: En móviles, el texto se alinea debajo de las imágenes */
