@@ -1627,7 +1627,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   }
 
   .header-logo img {
-    width: 80px; /* Ajusta el tamaño en mobile */
+    width: 100px; /* Ajusta el tamaño en mobile */
   }
 }
 .p-back-header {
