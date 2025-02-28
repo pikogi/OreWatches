@@ -2568,7 +2568,8 @@ html.no-csstransitions .home-content__main {
   max-height: 400px; /* Limita la altura máxima para que no se vea enorme */
   object-fit: cover; /* Ajusta la imagen sin deformarla */
   display: block;
-  margin-top: -80px !important; /* Espacio entre la imagen y el texto */
+  margin-top: -50px !important; /* Espacio entre la imagen y el texto */
+  margin-bottom: 60px;
 }
 
 /* -------------------------------------------------------------------
@@ -2674,24 +2675,17 @@ html.no-csstransitions .home-content__main {
     max-width: 100%;
     padding: 20px;
     background-color: white;
-
-}
-
-.catalog-conteiner {
-  margin-bottom: 50px;
 }
 
 .catalogo {
   position: absolute; /* Asegura que la línea se posicione respecto a esta sección */
-  margin-bottom: 40px !important;
-
 }
 
 .s-catalogo {
   background-color: white; /* Fondo oscuro */
   text-align: center;
   padding: 60px;
-  margin-bottom: 40px;
+  margin-bottom: -60px;
 
 }
 
