@@ -2563,6 +2563,13 @@ html.no-csstransitions .home-content__main {
   position: relative;
 }
 
+.tienda-image {
+  width: 100%; /* Ocupa todo el ancho */
+  max-height: 400px; /* Limita la altura máxima para que no se vea enorme */
+  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  display: block;
+  margin-top: -80px !important; /* Espacio entre la imagen y el texto */
+}
 
 /* -------------------------------------------------------------------
 * responsive:
@@ -2670,15 +2677,21 @@ html.no-csstransitions .home-content__main {
 
 }
 
+.catalog-conteiner {
+  margin-bottom: 50px;
+}
+
 .catalogo {
   position: absolute; /* Asegura que la línea se posicione respecto a esta sección */
+  margin-bottom: 40px !important;
+
 }
 
 .s-catalogo {
   background-color: white; /* Fondo oscuro */
   text-align: center;
   padding: 60px;
-  margin-bottom: -60px;
+  margin-bottom: 40px;
 
 }
 
@@ -2750,6 +2763,36 @@ html.no-csstransitions .home-content__main {
 
 .producto .precio:hover {
   transform: scale(1.05);
+}
+
+.catalog-buttons {
+  background-color: white !important;
+  display: flex !important;
+  justify-content: center !important;  /* Centra el contenido horizontalmente */
+  width: 100%;  /* Ocupa el 100% del ancho de la ventana */
+}
+
+.catalog-buttons .btn--stroke {
+  display: flex !important;  /* Aplica flexbox al botón */
+  justify-content: center !important;  /* Centra el texto horizontalmente */
+  align-items: center !important;  /* Centra el texto verticalmente */
+  background:white !important;  /* Fondo transparente */
+  border: 2px solid black !important;  /* Borde gris */
+  color: black !important;  /* Texto blanco */
+  border-radius: 2px !important;  /* Bordes redondeados */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5) !important;  /* Sombra */
+  padding: 10px 90px !important;  /* Relleno dentro del botón */
+  font-size: 16px !important;  /* Tamaño de la fuente */
+  font-weight: 600 !important;  /* Negrita */
+  cursor: pointer !important;  /* Aparece como un botón clickeable */
+  text-align: center !important;  /* Centrado del texto */
+}
+
+/* Efecto hover */
+.catalog-buttons .btn--stroke:hover {
+  border: 2px solid #000000 !important;  /* Borde más fuerte al pasar el ratón */
+  color: white !important;  /* Color del texto al pasar el ratón */
+  background: black !important;  /* Fondo blanco al pasar el ratón */
 }
 
 /* responsive: Catálogo

@@ -9,22 +9,27 @@ async function obtenerProductos() {
         const data = await response.json();
         console.log("Datos completos de Contentful:", data);
 
-        //Filtro
-        mostrarFiltros (data.items)
+        // Detectar si estamos en la página principal
+        const esPaginaPrincipal = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+        // Limitar a 8 productos solo en la página principal
+        const productosParaMostrar = esPaginaPrincipal ? data.items.slice(0, 8) : data.items;
+
+        // Filtro
+        mostrarFiltros(productosParaMostrar);
 
         // Crear el contenedor grid
         const gridContainer = document.createElement('div');
         gridContainer.className = 'productos-grid';
 
-        data.items.forEach(producto => {
+        productosParaMostrar.forEach(producto => {
             // Verifica el ID del producto
             console.log(`ID del producto: ${producto.sys.id}`);
 
-            // Obtener el campo "imagenes", que es ahora un array
-            const imagenes = producto.fields.imagenes || [];  // Asegúrate de que sea un array
-
-            // Inicializar la variable para almacenar las imágenes en el carrusel
+            // Obtener imágenes del producto
+            const imagenes = producto.fields.imagenes || [];
             let imagenesHtml = '';
+
             imagenes.forEach((imagen, index) => {
                 const imagenAsset = data.includes.Asset.find(
                     asset => asset.sys.id === imagen.sys.id
@@ -41,26 +46,22 @@ async function obtenerProductos() {
             const productElement = document.createElement('div');
             productElement.className = 'producto';
 
-            console.log(producto); // Verifica el objeto completo
-
             const productUrl = `product-detail.html?id=${producto.sys.id}`;
-            console.log(`Enlace generado: ${productUrl}`); // Verificar si se genera bien el enlace
-            
-            productElement.innerHTML = `
-            <a href="product-detail?id=${producto.sys.id}" class="product-link">
-                <div class="carousel-container">
-                    ${imagenesHtml}
-                    <button class="carousel-control prev" onclick="changeImage(event, 'prev')">❮</button>
-                    <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
-                </div>
-                <div class="product-info">
-                    <h3>${producto.fields.nombre}</h3>
-                    <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
-                    <span class="marca">${producto.fields.marca}</span>    
 
-                </div>
-            </a>
-        `;
+            productElement.innerHTML = `
+                <a href="product-detail?id=${producto.sys.id}" class="product-link">
+                    <div class="carousel-container">
+                        ${imagenesHtml}
+                        <button class="carousel-control prev" onclick="changeImage(event, 'prev')">❮</button>
+                        <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>${producto.fields.nombre}</h3>
+                        <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
+                        <span class="marca">${producto.fields.marca}</span>    
+                    </div>
+                </a>
+            `;
         
             gridContainer.appendChild(productElement);
         });

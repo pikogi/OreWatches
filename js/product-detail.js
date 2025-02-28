@@ -1,4 +1,30 @@
 // ✅ 1️⃣ Definir las funciones globalmente (fuera de DOMContentLoaded)
+function agregarSwipeEnCarrusel() {
+    let startX = 0;
+    let endX = 0;
+    const carousel = document.querySelector(".product-image");
+
+    if (!carousel) return;
+
+    carousel.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener("touchmove", (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener("touchend", () => {
+        let diffX = startX - endX;
+
+        if (diffX > 50) {
+            cambiarImagenCarrusel("next"); // Deslizar a la izquierda -> Siguiente imagen
+        } else if (diffX < -50) {
+            cambiarImagenCarrusel("prev"); // Deslizar a la derecha -> Imagen anterior
+        }
+    });
+}
+
 function cambiarImagenCarrusel(direccion) {
     if (!window.imagenUrls || window.imagenUrls.length === 0) return;
 
@@ -129,6 +155,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             window.imagenIndex = 0;
 
             aplicarZoom();
+            agregarSwipeEnCarrusel(); 
     
         } catch (error) {
             console.error('Error al cargar el producto:', error);
