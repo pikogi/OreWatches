@@ -30,12 +30,14 @@ function agregarSwipeEnCarrusel() {
         isDragging = false;
         activeImage.style.transition = "transform 0.3s ease"; // Reactiva la transición
 
-        if (moveDiff < -50) {
-            cambiarImagenCarrusel("next");
-        } else if (moveDiff > 50) {
-            cambiarImagenCarrusel("prev");
+        if (Math.abs(moveDiff) > activeImage.clientWidth / 2) {
+            if (moveDiff < 0) {
+                cambiarImagenCarrusel("next");
+            } else {
+                cambiarImagenCarrusel("prev");
+            }
         } else {
-            activeImage.style.transform = "translateX(0)";
+            activeImage.style.transform = "translateX(0)"; // Volver a la posición inicial
         }
     });
 
@@ -57,39 +59,6 @@ function agregarSwipeEnCarrusel() {
             activeImage.style.opacity = "1"; // Muestra la imagen con fade in
         }, 200); // Le damos un pequeño tiempo para la transición
     }
-}
-
-function cambiarImagenCarrusel(direccion) {
-    if (!window.imagenUrls || window.imagenUrls.length === 0) return;
-
-    if (direccion === 'next') {
-        window.imagenIndex = (window.imagenIndex + 1) % window.imagenUrls.length;
-    } else if (direccion === 'prev') {
-        window.imagenIndex = (window.imagenIndex - 1 + window.imagenUrls.length) % window.imagenUrls.length;
-    }
-
-    const mainImage = document.getElementById('main-image');
-    if (mainImage) {
-        mainImage.src = window.imagenUrls[window.imagenIndex];
-    }
-
-    // Actualizar miniaturas activas
-    document.querySelectorAll('.thumbnail').forEach((thumbnail, index) => {
-        thumbnail.classList.toggle('active', index === window.imagenIndex);
-    });
-}
-
-function cambiarImagen(url, elemento) {
-    const mainImage = document.getElementById('main-image');
-    if (mainImage) {
-        mainImage.src = url;
-    }
-
-    document.querySelectorAll('.thumbnail').forEach(thumbnail => {
-        thumbnail.classList.remove('active');
-    });
-
-    elemento.classList.add('active');
 }
 
 // ✅ 2️⃣ Ahora, ejecutar el código una vez que el DOM esté listo
