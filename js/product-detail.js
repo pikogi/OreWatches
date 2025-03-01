@@ -1,28 +1,62 @@
-// ✅ 1️⃣ Definir las funciones globalmente (fuera de DOMContentLoaded)
 function agregarSwipeEnCarrusel() {
     let startX = 0;
-    let endX = 0;
+    let currentX = 0;
+    let isDragging = false;
     const carousel = document.querySelector(".product-image");
+    let activeImage = document.getElementById("main-image");
 
-    if (!carousel) return;
+    if (!carousel || !activeImage) {
+        console.error("No se encontró el carrusel o la imagen principal.");
+        return;
+    }
 
     carousel.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
+        isDragging = true;
+        activeImage.style.transition = "none"; // Desactiva la transición mientras se arrastra
     });
 
     carousel.addEventListener("touchmove", (e) => {
-        endX = e.touches[0].clientX;
+        if (!isDragging) return;
+
+        currentX = e.touches[0].clientX;
+        let moveDiff = currentX - startX;
+
+        activeImage.style.transform = `translateX(${moveDiff}px)`;
     });
 
     carousel.addEventListener("touchend", () => {
-        let diffX = startX - endX;
+        let moveDiff = currentX - startX;
+        isDragging = false;
+        activeImage.style.transition = "transform 0.3s ease"; // Reactiva la transición
 
-        if (diffX > 50) {
-            cambiarImagenCarrusel("next"); // Deslizar a la izquierda -> Siguiente imagen
-        } else if (diffX < -50) {
-            cambiarImagenCarrusel("prev"); // Deslizar a la derecha -> Imagen anterior
+        if (moveDiff < -50) {
+            cambiarImagenCarrusel("next");
+        } else if (moveDiff > 50) {
+            cambiarImagenCarrusel("prev");
+        } else {
+            activeImage.style.transform = "translateX(0)";
         }
     });
+
+    function cambiarImagenCarrusel(direccion) {
+        if (!window.imagenUrls || window.imagenUrls.length === 0) return;
+
+        if (direccion === "next") {
+            window.imagenIndex = (window.imagenIndex + 1) % window.imagenUrls.length;
+        } else if (direccion === "prev") {
+            window.imagenIndex = (window.imagenIndex - 1 + window.imagenUrls.length) % window.imagenUrls.length;
+        }
+
+        // Cambia la imagen y espera a que el cambio se complete antes de resetear la transformación
+        activeImage.style.opacity = "0"; // Oculta la imagen con un fade out
+
+        setTimeout(() => {
+            activeImage.src = window.imagenUrls[window.imagenIndex];
+            activeImage.style.transform = "translateX(0)"; // Resetea la posición
+            activeImage.style.opacity = "1"; // Muestra la imagen con fade in
+        }, 200); // Le damos un pequeño tiempo para la transición
+    }
 }
 
 function cambiarImagenCarrusel(direccion) {
