@@ -191,6 +191,7 @@ body {
     justify-content: center;
     z-index: 1000;
     cursor: zoom-out;
+    overflow: hidden; /* Asegura que la imagen no se desborde */
 }
 
 .zoom-container img {
@@ -198,11 +199,13 @@ body {
     height: auto;
     transform-origin: center;
     transition: transform 0.2s ease-out;
+    pointer-events: none; /* Para evitar interferencia con los eventos táctiles */
 }
 
 .zoomable-image {
     cursor: zoom-in;
 }
+
 /* Contenedor del carrusel */
 .carousel-container {
     position: absolute;
