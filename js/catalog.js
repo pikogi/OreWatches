@@ -56,9 +56,9 @@ async function obtenerProductos() {
                         <button class="carousel-control next" onclick="changeImage(event, 'next')">❯</button>
                     </div>
                     <div class="product-info">
+                        <span class="marca">${producto.fields.marca}</span>    
                         <h3>${producto.fields.nombre}</h3>
                         <p class="precio">${producto.fields.precio || 'Consultar precio'}</p>
-                        <span class="marca">${producto.fields.marca}</span>    
                     </div>
                 </a>
             `;

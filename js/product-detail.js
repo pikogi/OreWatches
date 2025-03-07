@@ -186,42 +186,48 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
     function aplicarZoom() {
-        const productImage = document.querySelector(".zoomable-image");
-        if (!productImage) return;
-        
-        const zoomContainer = document.createElement("div");
-        zoomContainer.classList.add("zoom-container");
-        zoomContainer.innerHTML = `<img src="${productImage.src}" alt="Zoom Image">`;
-        document.body.appendChild(zoomContainer);
-    
-        productImage.addEventListener("click", function () {
-            zoomContainer.style.display = "flex";
-            zoomContainer.querySelector("img").src = productImage.src;
-        });
-    
-        zoomContainer.addEventListener("click", function () {
-            zoomContainer.style.display = "none";
-        });
-    
-        const zoomImage = zoomContainer.querySelector("img");
-    
+        const productImage = document.querySelector(".zoomable-image")
+        if (!productImage) return
+      
+        // Detectar si es un dispositivo móvil
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      
+        // Si es móvil, no aplicar zoom
+        if (isMobile) {
+          return
+        }
+      
+        const zoomContainer = document.createElement("div")
+        zoomContainer.classList.add("zoom-container")
+        zoomContainer.innerHTML = `<img src="${productImage.src}" alt="Zoom Image">`
+        document.body.appendChild(zoomContainer)
+      
+        productImage.addEventListener("click", () => {
+          zoomContainer.style.display = "flex"
+          zoomContainer.querySelector("img").src = productImage.src
+        })
+      
+        zoomContainer.addEventListener("click", () => {
+          zoomContainer.style.display = "none"
+        })
+      
+        const zoomImage = zoomContainer.querySelector("img")
+      
         // Manejo de eventos en dispositivos móviles y de escritorio
         function handleZoomMove(e) {
-            const { left, top, width, height } = zoomImage.getBoundingClientRect();
-            const x = ((e.clientX || e.touches[0].clientX) - left) / width * 100;
-            const y = ((e.clientY || e.touches[0].clientY) - top) / height * 100;
-    
-            zoomImage.style.transformOrigin = `${x}% ${y}%`;
-            zoomImage.style.transform = "scale(2)";
+          const { left, top, width, height } = zoomImage.getBoundingClientRect()
+          const x = (((e.clientX || e.touches[0].clientX) - left) / width) * 100
+          const y = (((e.clientY || e.touches[0].clientY) - top) / height) * 100
+      
+          zoomImage.style.transformOrigin = `${x}% ${y}%`
+          zoomImage.style.transform = "scale(2)"
         }
-    
-        // Agregar eventos para movimiento en escritorio y móviles
-        zoomContainer.addEventListener("mousemove", handleZoomMove);
-        zoomContainer.addEventListener("touchmove", handleZoomMove);
-    
-        zoomContainer.addEventListener("mouseleave", function () {
-            zoomImage.style.transform = "scale(1)";
-        });
-    }
-    
+      
+        // Agregar eventos para movimiento en escritorio
+        zoomContainer.addEventListener("mousemove", handleZoomMove)
+      
+        zoomContainer.addEventListener("mouseleave", () => {
+          zoomImage.style.transform = "scale(1)"
+        })
+      }
 });
