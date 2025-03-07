@@ -2685,13 +2685,18 @@ html.no-csstransitions .home-content__main {
   background-color: white; /* Fondo oscuro */
   text-align: center;
   padding: 60px;
-  margin-bottom: -60px;
-
+  margin-bottom: -90px;
 }
 
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Forzamos 4 columnas en desktop */
+    gap: 30px;
+  }
+
+  .catalogo-page .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Forzamos 4 columnas en desktop */
     gap: 30px;
   }
 
@@ -2819,6 +2824,7 @@ html.no-csstransitions .home-content__main {
         width: 100%;
         row-gap: -10px !important;
         padding: 0;
+        margin-top: 10px !important;
     }
 }
 
@@ -2852,7 +2858,56 @@ html.no-csstransitions .home-content__main {
       visibility: hidden;
     }
 }
+/* responsive: Catálogo.htlm
+ * ------------------------------------------------------------------- */
 
+ @media only screen and (max-width: 1200px) {
+  .catalogo-page .productos-grid {
+      grid-template-columns: repeat(4, 1fr); /* 3 columnas en tablets grandes */
+  }
+}
+@media only screen and (max-width: 900px) {
+  .catalogo-page .productos-grid {
+      grid-template-columns: repeat(3, 1fr) !important; /* 2 columnas en tablets */
+      gap: 10px;
+      width: 100%;
+      row-gap: -10px !important;
+      padding: 0;
+      margin-top: -20px !important;
+
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .catalogo-page .productos-grid {
+      grid-template-columns: repeat(3, 1fr); /* Mantenemos 2 columnas en móvil */
+      gap: 10px;
+      row-gap: -10px !important;
+  }
+  
+  .catalogo-page .producto {
+      padding: 10px !important;
+  }
+  
+  .catalogo-page .producto h3 {
+      font-size: 1.3rem;
+  }
+  
+  .catalogo-page .producto .descripcion {
+      font-size: 1.3rem;
+  }
+  
+}
+
+@media only screen and (max-width: 400px) {
+  .catalogo-page .productos-grid {
+      grid-template-columns: 1fr; /* 1 columna en móviles muy pequeños */
+  }
+
+  .catalogo-page .carousel-control{
+    visibility: hidden;
+  }
+}
 /* Carrusel */
 .carousel-container {
   position: relative;
