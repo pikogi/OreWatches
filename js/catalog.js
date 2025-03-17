@@ -1,5 +1,30 @@
+// Función para crear el skeleton loader de la lista de productos
+function crearProductosSkeletonLoader(cantidad = 8) {
+    let skeletonHtml = '';
+    
+    for (let i = 0; i < cantidad; i++) {
+        skeletonHtml += `
+            <div class="producto skeleton">
+                <div class="carousel-container skeleton">
+                    <div class="skeleton-image"></div>
+                </div>
+                <div class="product-info skeleton">
+                    <div class="skeleton-marca"></div>
+                    <div class="skeleton-nombre"></div>
+                    <div class="skeleton-precio"></div>
+                </div>
+            </div>
+        `;
+    }
+    
+    return `<div class="productos-grid skeleton-grid">${skeletonHtml}</div>`;
+}
+
 async function obtenerProductos() {
     const productList = document.getElementById('product-list');
+    
+    // Mostrar el skeleton loader mientras se cargan los productos
+    productList.innerHTML = crearProductosSkeletonLoader();
     
     try {
         const response = await fetch(
@@ -92,31 +117,107 @@ function mostrarFiltros(productos) {
     const filtrosContainer = document.getElementById('filters');
     if (!filtrosContainer) return;
 
-    const marcas = [...new Set(productos.map(p => p.fields.marca))].filter(Boolean);
+    // Normalizamos las marcas para evitar duplicados por mayúsculas/minúsculas o espacios
+    const marcasUnicas = new Set(
+        productos
+            .map(p => p.fields.marca?.trim().toLowerCase()) // Convertir a minúsculas y quitar espacios
+            .filter(Boolean)
+    );
+
     filtrosContainer.innerHTML = `
         <select id="filtro-marca">
             <option value="">Todas las marcas</option>
-            ${marcas.map(marca => `<option value="${marca}">${marca}</option>`).join('')}
+            ${[...marcasUnicas]
+                .map(marca => `<option value="${marca}">${marca.charAt(0).toUpperCase() + marca.slice(1)}</option>`)
+                .join('')}
         </select>
         <button onclick="aplicarFiltros()">Filtrar</button>
     `;
 }
 
 function aplicarFiltros() {
-    console.log("filtra")
-    const marcaSeleccionada = document.getElementById('filtro-marca').value;
-    console.log(marcaSeleccionada)
+    console.log("Filtrando...");
+
+    const marcaSeleccionada = document.getElementById('filtro-marca').value.toLowerCase();
+    console.log("Marca seleccionada:", marcaSeleccionada);
 
     const productos = document.querySelectorAll('.producto');
-    console.log(productos)
+
     productos.forEach(producto => {
-        const marca = producto.querySelector('.marca').textContent;        
+        const marca = producto.querySelector('.marca').textContent.trim().toLowerCase();
         let mostrar = true;
-        if (marcaSeleccionada && marca !== marcaSeleccionada) mostrar = false;
-        
+
+        if (marcaSeleccionada && marca !== marcaSeleccionada) {
+            mostrar = false;
+        }
+
         producto.style.display = mostrar ? 'block' : 'none';
     });
 }
+
+
+// Función para cambiar las imágenes del carrusel
+function changeImage(event, direction) {
+    event.preventDefault();  // Evita que el enlace se siga (redirección)
+
+    const carouselItems = event.target.closest('.carousel-container').querySelectorAll('.carousel-item');
+    let activeIndex = Array.from(carouselItems).findIndex(item => item.classList.contains('active'));
+
+    if (direction === 'next') {
+        activeIndex = (activeIndex + 1) % carouselItems.length;
+    } else if (direction === 'prev') {
+        activeIndex = (activeIndex - 1 + carouselItems.length) % carouselItems.length;
+    }
+
+    carouselItems.forEach(item => item.classList.remove('active'));
+    carouselItems[activeIndex].classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', obtenerProductos);
+console.log("El DOM está listo");
+
+function mostrarFiltros(productos) {
+    const filtrosContainer = document.getElementById('filters');
+    if (!filtrosContainer) return;
+
+    // Normalizamos las marcas para evitar duplicados por mayúsculas/minúsculas o espacios
+    const marcasUnicas = new Set(
+        productos
+            .map(p => p.fields.marca?.trim().toLowerCase()) // Convertir a minúsculas y quitar espacios
+            .filter(Boolean)
+    );
+
+    filtrosContainer.innerHTML = `
+        <select id="filtro-marca">
+            <option value="">Todas las marcas</option>
+            ${[...marcasUnicas]
+                .map(marca => `<option value="${marca}">${marca.charAt(0).toUpperCase() + marca.slice(1)}</option>`)
+                .join('')}
+        </select>
+        <button onclick="aplicarFiltros()">Filtrar</button>
+    `;
+}
+
+function aplicarFiltros() {
+    console.log("Filtrando...");
+
+    const marcaSeleccionada = document.getElementById('filtro-marca').value.toLowerCase();
+    console.log("Marca seleccionada:", marcaSeleccionada);
+
+    const productos = document.querySelectorAll('.producto');
+
+    productos.forEach(producto => {
+        const marca = producto.querySelector('.marca').textContent.trim().toLowerCase();
+        let mostrar = true;
+
+        if (marcaSeleccionada && marca !== marcaSeleccionada) {
+            mostrar = false;
+        }
+
+        producto.style.display = mostrar ? 'block' : 'none';
+    });
+}
+
 
 // Función para cambiar las imágenes del carrusel
 function changeImage(event, direction) {

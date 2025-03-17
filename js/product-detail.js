@@ -10,7 +10,7 @@ function agregarSwipeEnCarrusel() {
         return;
     }
 
-    const umbralMovimiento = 150; // Se necesita deslizar al menos 150px para cambiar de imagen
+    const umbralMovimiento = 150;
 
     carousel.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
@@ -20,10 +20,8 @@ function agregarSwipeEnCarrusel() {
 
     carousel.addEventListener("touchmove", (e) => {
         if (!isDragging) return;
-
         currentX = e.touches[0].clientX;
         let moveDiff = currentX - startX;
-
         activeImage.style.transform = `translateX(${moveDiff}px)`;
     });
 
@@ -54,21 +52,19 @@ function cambiarImagenCarrusel(direccion) {
     const mainImage = document.getElementById("main-image");
     if (!mainImage) return;
 
-    // Obtener la nueva imagen antes de aplicarla
     const nuevaImagen = new Image();
     nuevaImagen.src = window.imagenUrls[window.imagenIndex];
 
     nuevaImagen.onload = function () {
-        // Ocultar con fade-out
         mainImage.style.opacity = "0";
 
         setTimeout(() => {
-            mainImage.src = nuevaImagen.src; // Cambiar la imagen
+            mainImage.src = nuevaImagen.src;
             mainImage.style.transform = "translateX(0)";
-            mainImage.style.opacity = "1"; // Volver a mostrar con fade-in
+            mainImage.style.opacity = "1";
         }, 200);
     };
-    // Actualizar miniaturas activas
+
     document.querySelectorAll(".thumbnail").forEach((thumbnail, index) => {
         thumbnail.classList.toggle("active", index === window.imagenIndex);
     });
@@ -87,6 +83,31 @@ function cambiarImagen(url, elemento) {
     elemento.classList.add("active");
 }
 
+// Función para crear el skeleton loader
+function crearSkeletonLoader() {
+    return `
+        <div class="detalle-producto container skeleton-container">
+            <div class="product-image skeleton">
+                <div class="skeleton-image"></div>
+                <div class="thumbnail-container skeleton">
+                    <div class="skeleton-thumbnail"></div>
+                    <div class="skeleton-thumbnail"></div>
+                    <div class="skeleton-thumbnail"></div>
+                </div>
+            </div>
+            <div class="product-info skeleton">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-description"></div>
+                <div class="skeleton-price"></div>
+                <div class="skeleton-button"></div>
+            </div>
+        </div>
+    `;
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     function obtenerParametroURL(nombre) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -95,18 +116,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const productId = obtenerParametroURL("id");
     console.log("ID del producto:", productId);
+    const productDetail = document.getElementById("product-detail");
 
-    if (productId) {
-        await obtenerDetallesProducto(productId);
-    } else {
-        document.getElementById("product-detail").innerHTML = `
+    if (!productId) {
+        productDetail.innerHTML = `
             <p class="error-mensaje">No se encontró el producto.</p>
         `;
+        return;
     }
 
-    async function obtenerDetallesProducto(id) {
-        const productDetail = document.getElementById("product-detail");
+    // Mostrar el skeleton loader mientras se carga el producto
+    productDetail.innerHTML = crearSkeletonLoader();
 
+    async function obtenerDetallesProducto(id) {
         try {
             const response = await fetch(
                 `https://cdn.contentful.com/spaces/${CONFIG.CONTENTFUL.SPACE_ID}/environments/master/entries/${id}?access_token=${CONFIG.CONTENTFUL.ACCESS_TOKEN}`
@@ -121,31 +143,34 @@ document.addEventListener("DOMContentLoaded", async function () {
             const producto = data.fields;
             const imagenes = producto.imagenes ? producto.imagenes.map((img) => img.sys.id) : [];
 
+            if (imagenes.length === 0) {
+                console.warn("El producto no tiene imágenes.");
+            }
+
             let imagenPrincipal = "";
             let miniaturasHtml = "";
             let imagenUrls = [];
 
             if (imagenes.length > 0) {
-                const assetsResponse = await fetch(
-                    `https://cdn.contentful.com/spaces/${CONFIG.CONTENTFUL.SPACE_ID}/environments/master/assets?access_token=${CONFIG.CONTENTFUL.ACCESS_TOKEN}`
-                );
-                const assetsData = await assetsResponse.json();
+                for (const id of imagenes) {
+                    const assetResponse = await fetch(
+                        `https://cdn.contentful.com/spaces/${CONFIG.CONTENTFUL.SPACE_ID}/environments/master/assets/${id}?access_token=${CONFIG.CONTENTFUL.ACCESS_TOKEN}`
+                    );
+                    const assetData = await assetResponse.json();
 
-                imagenes.forEach((id, index) => {
-                    const imagenAsset = assetsData.items.find((asset) => asset.sys.id === id);
-                    if (imagenAsset) {
-                        const imagenUrl = `https:${imagenAsset.fields.file.url}`;
+                    if (assetData.fields && assetData.fields.file && assetData.fields.file.url) {
+                        const imagenUrl = `https:${assetData.fields.file.url}`;
                         imagenUrls.push(imagenUrl);
 
-                        if (index === 0) {
+                        if (!imagenPrincipal) {
                             imagenPrincipal = `<img id="main-image" class="zoomable-image" src="${imagenUrl}" alt="${producto.nombre}">`;
                         }
 
                         miniaturasHtml += `
-                            <img class="thumbnail ${index === 0 ? "active" : ""}" src="${imagenUrl}" alt="${producto.nombre}" onclick="cambiarImagen('${imagenUrl}', this)">
+                            <img class="thumbnail ${imagenUrls.length === 1 ? "active" : ""}" src="${imagenUrl}" alt="${producto.nombre}" onclick="cambiarImagen('${imagenUrl}', this)">
                         `;
                     }
-                });
+                }
             }
 
             productDetail.innerHTML = `
@@ -185,49 +210,29 @@ document.addEventListener("DOMContentLoaded", async function () {
             productDetail.innerHTML = `<p class="error-mensaje">Error al cargar el producto: ${error.message}</p>`;
         }
     }
+
     function aplicarZoom() {
-        const productImage = document.querySelector(".zoomable-image")
-        if (!productImage) return
-      
-        // Detectar si es un dispositivo móvil
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      
-        // Si es móvil, no aplicar zoom
-        if (isMobile) {
-          return
-        }
-      
-        const zoomContainer = document.createElement("div")
-        zoomContainer.classList.add("zoom-container")
-        zoomContainer.innerHTML = `<img src="${productImage.src}" alt="Zoom Image">`
-        document.body.appendChild(zoomContainer)
-      
+        const productImage = document.querySelector(".zoomable-image");
+        if (!productImage) return;
+
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) return;
+
+        const zoomContainer = document.createElement("div");
+        zoomContainer.classList.add("zoom-container");
+        zoomContainer.innerHTML = `<img src="${productImage.src}" alt="Zoom Image">`;
+        document.body.appendChild(zoomContainer);
+
         productImage.addEventListener("click", () => {
-          zoomContainer.style.display = "flex"
-          zoomContainer.querySelector("img").src = productImage.src
-        })
-      
+            zoomContainer.style.display = "flex";
+            zoomContainer.querySelector("img").src = productImage.src;
+        });
+
         zoomContainer.addEventListener("click", () => {
-          zoomContainer.style.display = "none"
-        })
-      
-        const zoomImage = zoomContainer.querySelector("img")
-      
-        // Manejo de eventos en dispositivos móviles y de escritorio
-        function handleZoomMove(e) {
-          const { left, top, width, height } = zoomImage.getBoundingClientRect()
-          const x = (((e.clientX || e.touches[0].clientX) - left) / width) * 100
-          const y = (((e.clientY || e.touches[0].clientY) - top) / height) * 100
-      
-          zoomImage.style.transformOrigin = `${x}% ${y}%`
-          zoomImage.style.transform = "scale(2)"
-        }
-      
-        // Agregar eventos para movimiento en escritorio
-        zoomContainer.addEventListener("mousemove", handleZoomMove)
-      
-        zoomContainer.addEventListener("mouseleave", () => {
-          zoomImage.style.transform = "scale(1)"
-        })
-      }
+            zoomContainer.style.display = "none";
+        });
+    }
+
+    // Cargar los detalles del producto después de mostrar el skeleton
+    await obtenerDetallesProducto(productId);
 });
