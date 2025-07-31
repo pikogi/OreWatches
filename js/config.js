@@ -4,7 +4,7 @@ const CONFIG = {
         ACCESS_TOKEN: 'UbF3-neoqrRAO_e82TJ5Go-bHsybS9c74zCVanGt4ZQ'
     },
     WHATSAPP: {
-        PHONE: '3517340111'
+        PHONE: '351'
     }
 };
 document.addEventListener("DOMContentLoaded", function() {

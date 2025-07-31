@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.querySelectorAll(".boton-consulta").forEach((boton) => {
                 boton.addEventListener("click", () => {
                     const mensaje = `Hola, me gustaría consultar sobre el producto ${producto.nombre}.`;
-                    window.open(`https://wa.me/3517340111?text=${encodeURIComponent(mensaje)}`, "_blank");
+                    window.open(`https://wa.me/351?text=${encodeURIComponent(mensaje)}`, "_blank");
                 });
             });
 
